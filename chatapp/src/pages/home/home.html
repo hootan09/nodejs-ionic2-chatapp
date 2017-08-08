@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Chat App
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+    <ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>
+  </ion-item>  
+    <ion-scroll>
+        <div class="card-wrapper cf" *ngFor="let message of chatMessages">
+            <ion-card class="{{message.messageClass}} fade-in" >
+                <div class="user-avatar">
+                    <img src="https://api.adorable.io/avatars/90/{{ message.username }}.png">
+                </div>
+                <ion-card-content>
+                    {{ message.message }}
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </ion-scroll>
+
+    <!-- Footer with sendmessage -->
+    <form (ngSubmit)="sendMessage()">
+    <ion-footer>
+        <ion-toolbar>
+            <ion-grid>
+                <ion-row wrap>
+                    <ion-col width-80>
+                        <ion-item>
+                            <ion-input [(ngModel)]="message" [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+                        </ion-item>   
+                    </ion-col>
+                    <ion-col width-20>
+                        <button ion-button block (click)="sendMessage()">Send</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-toolbar>
+    </ion-footer>
+    </form>
+</ion-content>
